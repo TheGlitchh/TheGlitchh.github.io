@@ -76,8 +76,8 @@
 
 
 .container {
-  margin-left:50%;
-  margin-top:200px;
+  margin-left:49%;
+  margin-top:4%;
   position: relative;
   width: 24px;
   height: 24px;
@@ -190,16 +190,16 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
 	<br>
 	<table> <tr> <td><ul style="margin-left:90px;">
 		<li>
-			<a href="#">
+			<a target="_blank" href="https://t.me/theglitchh">
 				<i class="fas fa-paper-plane icon1"></i>   </a>
 		</li>
 		<li>
-			<a href="#"><i class="fab fa-github icon1"></i></a>
+			<a target="_blank" href="https://github.com/theglitchh"><i class="fab fa-github icon1"></i></a>
 		</li>
 		<li>
-			<a href="#"><i class="fas fa-code-branch icon1"></i></a></li>
+			<a target="_blank" href="https://leetcode.com/theglitchh/"><i class="fas fa-code-branch icon1"></i></a></li>
 		<li>
-			<a href="#"><i class="fas fa-envelope icon1"></i></a></li>
+			<a href="mailto:souravgope765@gmail.com"><i class="fas fa-envelope icon1"></i></a></li>
 	</ul></td></tr></table>
 
 </div>
@@ -247,18 +247,27 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
   </tr>
 </table>
 <table width="100%">
-  <tr> <td>  <div class="container">
-    <div class="chevron"></div>
-    <div class="chevron"></div>
-    <div class="chevron"></div>
-  </div> </td></tr>
+  <tr> <td>  
+    <div class="container">
+      <div class="chevron" data-scroll-to="#sectionToNavigate"></div>
+      <div class="chevron" data-scroll-to="#sectionToNavigate"></div>
+      <div class="chevron" data-scroll-to="#sectionToNavigate"></div>
+    </div>  
+  
+  </td></tr>
 
 </table>
 
-<!--Third Card-->
+<section id="sectionToNavigate" style="height: 1000px; background-color:#ff000000">
+  <!-- Content of the section -->
+  <table width="100%">
+    <tr>
+      <td>
 
-	
-
+      </td>
+    </tr>
+  </table>
+</section>
 
 
 </body>
@@ -282,6 +291,18 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
   } else {
     container.style.opacity = '1'; // Fade in by setting opacity to 1
   }
+});
+</script>
+
+<script>
+  document.querySelectorAll('.chevron').forEach(function(chevron) {
+  chevron.addEventListener('click', function() {
+    var target = this.getAttribute('data-scroll-to');
+    var targetElement = document.querySelector(target);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 });
 </script>
 

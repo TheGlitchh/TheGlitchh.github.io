@@ -36,7 +36,7 @@ var background = document.getElementById("bgCanvas"),
     width = window.innerWidth,
     height = document.body.offsetHeight;
 
-(height < 800) ? height = 900 : height;
+(height < 800) ? height = 800 : height;
 
 background.width = width;
 background.height = height;
