@@ -407,6 +407,15 @@ window.addEventListener('scroll', function() {
 
 <script src="sourav-anim1.js"></script>
 
-
-<script></script>
+<script>
+  document.getElementById('downloadCV').addEventListener('click', function() {
+      // Create a link element
+      const a = document.createElement('a');
+      a.href = './resume.pdf';  // Path to the file
+      a.download = 'resume.pdf';  // Name of the downloaded file
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+  });
+</script>
 </html>
