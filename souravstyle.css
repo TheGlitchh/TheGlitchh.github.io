@@ -105,19 +105,7 @@ ul li:nth-child(4) a:before {
 	background: #dd4b39;
 }
 
-.boxclass {
-	position: absolute;
-	left: 7%;
-	background: var(--background);
-	max-width: 450px;
-	min-height: 250px;
-	top: 15%;
-	margin-top:7%;
-	padding: 40px 20px 20px 30px;
-	border-radius: 8px;
-	box-shadow: var(--shadow);
-	transition: margin 100ms;
-  }
+
 
   .boxclass2 {
 	position: absolute;
@@ -138,12 +126,12 @@ ul li:nth-child(4) a:before {
   }
   .boxclass3 {
 	position: absolute;
-	right: 5%;
+	right: 11%;
 	height:150px;
 	background: var(--background);
-	min-width: 450px;
-	min-height: 150px;
-	top: 60%; /* Same as boxclass */
+	min-width: 850px;
+	min-height: 450px;
+	top: 120%; /* Same as boxclass */
 	padding: 40px 20px 20px 30px;
 	border-radius: 8px;
 	box-shadow: var(--shadow);
@@ -153,7 +141,29 @@ ul li:nth-child(4) a:before {
 	scrollbar-width: none;
 	text-align: left;
   }
-  
+  .containers1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 15%;
+    gap: 2%; /* Space between the boxes */
+}
+  .boxclass {
+	position: absolute;
+	left: 7%;
+	background: var(--background);
+	max-width: 450px;
+	min-height: 250px;
+	top: 15%;
+	margin-top:7%;
+	padding: 40px 20px 20px 30px;
+	border-radius: 8px;
+	box-shadow: var(--shadow);
+	transition: margin 100ms;
+  }
   
   .boxclass1 {
 	position: absolute;
@@ -179,6 +189,18 @@ text-align: center;
 .boxclass1::-webkit-scrollbar {
 	display: none;
   }
+
+  @media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .boxclass, .boxclass2 {
+        max-width: 100%;
+    }
+}
+  
 
 html {
 	color: var(--foreground);

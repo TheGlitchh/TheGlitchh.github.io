@@ -1,26 +1,7 @@
 $(document).ready(function() {
     $(".closeclass, .close-container, .close-btn").hide();
 
-    $("div.boxclass").click(function(event) {
-        event.stopPropagation();
-        $(this).addClass("zoom-effect");
-        $(".boxclass").not(this).addClass("blurred-background");
-        $(".closeclass, .close-container, .close-btn").show();
-    });
-
-    $(document).click(function(event) {
-        if (!$(event.target).closest('.boxclass').length) {
-            $(".boxclass").removeClass("zoom-effect blurred-background");
-            $(".closeclass, .close-container, .close-btn").hide();
-        }
-    });
-
-    $(".close-btn").click(function(event) {
-        event.stopPropagation();
-        $(this).parent().removeClass("zoom-effect");
-        $(".boxclass").removeClass("blurred-background").removeClass("zoom-effect");
-        $(".closeclass, .close-container, .close-btn").hide();
-    });
+    
 });
 
 (function () {
