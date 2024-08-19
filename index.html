@@ -162,7 +162,64 @@
 }
   </style>
 
+<style>
+ .download-cv-btn {
+  line-height: 50px;
+  height: 50px;
+  width: 50px; /* Adjust width to match the height */
+  cursor: pointer;
+  color: #fff89d; /* Text color */
+  transition: all 0.5s;
+  position: relative;
+  background-color: #312c1f93; /* Translucent background color */
+  border: none; /* Remove borders */
+  border-radius: 50%; /* Make it a circle */
+  text-align: center; /* Center text */
+  font-size: 14px; /* Adjust font size to fit */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+}
 
+.download-cv-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.1); /* Match background color */
+  transition: all 0.3s;
+  border-radius: 50%; /* Make the before element a circle */
+}
+
+.download-cv-btn:hover::before {
+  opacity: 0;
+  transform: scale(0.5, 0.5);
+}
+
+.download-cv-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 215, 129, 0.842); /* Match border color */
+  transform: scale(1.2, 1.2);
+  border-radius: 50%; /* Make the after element a circle */
+}
+
+.download-cv-btn:hover::after {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+</style>
 <canvas  id="bgCanvas"></canvas>
 <body>
 
@@ -170,10 +227,8 @@
 <table width="100%" border="0">
 <tr> <td style="padding-left:-20px;" rowspan="4"><a href="https://github.com/theglitchh"><img style="" class="imgclass1" src="./res/PXL_20230729_140247553.jpg" alt="souravImg"> </a>  </td>
 <td><p class="p1 gradient" style="font-weight: bold; font-size: 20px;">Sourav Gope</p></td>
-<td  rowspan="4" valign="top" class="close-container close-btn">
-	<div  class="leftright"></div>
-	<div  class="rightleft"></div>
-	<label   class="close">close</label>
+<td rowspan="4" valign="top" class="download-cv-container">
+  <button id="downloadCV" class="download-cv-btn">  CV</button>
 </td>
 </tr>
 <tr><td><p><i class="fa-solid fa-calendar-days"></i> Age: 23</p></td></tr>
