@@ -107,22 +107,23 @@ ul li:nth-child(4) a:before {
 
 
 
-  .boxclass2 {
+  .boxclassinfinite {
 	position: absolute;
-	left: 7.5%;
-	height:150px;
+	left: 3%;
+	height:82%;
 	background: var(--background);
-	min-width: 450px;
-	min-height: 150px;
-	top: 60%; /* Same as boxclass */
+	min-width: 90%;
+	min-height: 82%;
+	top: 4%; /* Same as boxclass */
 	padding: 40px 20px 20px 30px;
 	border-radius: 8px;
 	box-shadow: var(--shadow);
 	transition: calc(100ms * 2);
-	overflow-y: auto;
+	overflow-y:hidden;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	text-align: left;
+	z-index:9;
   }
   .boxclass3 {
 	position: absolute;

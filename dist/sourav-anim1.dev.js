@@ -1,7 +1,7 @@
 "use strict";
 
 $(document).ready(function () {
-  $(".closeclass, .close-container, .close-btn").hide();
+  // $(".closeclass, .close-container, .close-btn").hide();
   fetch('./blog.json').then(function (response) {
     return response.json();
   }).then(function (data) {
@@ -9,10 +9,52 @@ $(document).ready(function () {
     data.forEach(function (post) {
       var article = document.createElement('article');
       article.classList.add('blog-post');
-      article.innerHTML = "\n          <header>\n            <center><h2 class=\"post-title\">".concat(post.title, "</h2></center>\n            <p class=\"post-meta\">Posted on ").concat(post.date, " by ").concat(post.author, "</p>\n          </header>\n          <div class=\"post-content\">\n            <p style=\"color:#a89984\">").concat(post.content, "</p>\n          </div>\n          <footer>\n            <p class=\"post-tags\">Tags: ").concat(post.tags.map(function (tag) {
+      article.dataset.fullContent = encodeURIComponent(post.full); // Store full content
+
+      article.dataset.title = post.title; // Store title
+
+      article.dataset.date = post.date; // Store date
+
+      article.innerHTML = "\n               <header>\n                   <center><h2 class=\"post-title\">".concat(post.title, "</h2></center>\n                   <p class=\"post-meta\">Posted on ").concat(post.date, " by ").concat(post.author, "</p>\n               </header>\n               <div class=\"post-content\">\n                   <p style=\"color:#a89984\">").concat(post.content, "</p>\n               </div>\n               <footer>\n                   <p class=\"post-tags\">Tags: ").concat(post.tags.map(function (tag) {
         return "<a href=\"#\" style=\"color:#666\">".concat(tag, "</a>");
-      }).join(', '), "</p>\n          </footer>\n        ");
+      }).join(', '), "</p>\n               </footer>\n           ");
       blogContainer.appendChild(article);
+    }); // Add event listener to handle clicks on any blog post
+
+    blogContainer.addEventListener('click', function (event) {
+      if (event.target.closest('.blog-post')) {
+        var post = event.target.closest('.blog-post');
+        var fullContent = decodeURIComponent(post.dataset.fullContent);
+        var title = post.dataset.title;
+        var date = post.dataset.date; // Show and populate the first .boxclassinfinite div with the full content
+
+        var boxclassinfinite = document.querySelector('.boxclassinfinite');
+
+        if (boxclassinfinite) {
+          boxclassinfinite.innerHTML = "\n                   <div class=\"close-container close-btn\">\n                   <div class=\"leftright\"></div>\n                   <div class=\"rightleft\"></div>\n                   <label class=\"close\">close</label>\n               </div>\n                       <header>\n                           <h1 style=\"text-align: center;\">".concat(title, "</h1>\n                           <p style=\"text-align: center; font-style: italic;\">Posted on ").concat(date, "</p>\n                       </header>\n                       <div class=\"full-content\">\n                           <p>").concat(fullContent, "</p>\n                       </div>\n                   ");
+          boxclassinfinite.removeAttribute('hidden');
+          boxclassinfinite.classList.remove('hide-animation'); // Optional: Close the .boxclassinfinite div when clicking outside of it
+
+          document.addEventListener('click', function (e) {
+            if (!boxclassinfinite.contains(e.target) && !e.target.closest('.blog-post')) {
+              boxclassinfinite.setAttribute('hidden', true);
+            }
+          });
+          document.addEventListener('click', function (event) {
+            var closeButton = event.target.closest('.close-container');
+            var boxclassinfinite = document.querySelector('.boxclassinfinite');
+
+            if (closeButton && boxclassinfinite) {
+              boxclassinfinite.classList.add('hide-animation');
+              boxclassinfinite.addEventListener('animationend', function () {
+                boxclassinfinite.setAttribute('hidden', true);
+              }, {
+                once: true
+              });
+            }
+          });
+        }
+      }
     });
   })["catch"](function (error) {
     return console.error('Error loading blog posts:', error);

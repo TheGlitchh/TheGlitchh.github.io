@@ -1,31 +1,81 @@
 $(document).ready(function() {
-    $(".closeclass, .close-container, .close-btn").hide();
-    fetch('./blog.json')
-    .then(response => response.json())
-    .then(data => {
-      const blogContainer = document.getElementById('blog-container');
-      data.forEach(post => {
-        const article = document.createElement('article');
-        article.classList.add('blog-post');
-        
-        article.innerHTML = `
-          <header>
-            <center><h2 class="post-title">${post.title}</h2></center>
-            <p class="post-meta">Posted on ${post.date} by ${post.author}</p>
-          </header>
-          <div class="post-content">
-            <p style="color:#a89984">${post.content}</p>
-          </div>
-          <footer>
-            <p class="post-tags">Tags: ${post.tags.map(tag => `<a href="#" style="color:#666">${tag}</a>`).join(', ')}</p>
-          </footer>
-        `;
-        
-        blogContainer.appendChild(article);
-      });
-    })
-    .catch(error => console.error('Error loading blog posts:', error));
-    
+   // $(".closeclass, .close-container, .close-btn").hide();
+   fetch('./blog.json')
+   .then(response => response.json())
+   .then(data => {
+       const blogContainer = document.getElementById('blog-container');
+       data.forEach(post => {
+           const article = document.createElement('article');
+           article.classList.add('blog-post');
+           article.dataset.fullContent = encodeURIComponent(post.full); // Store full content
+           article.dataset.title = post.title; // Store title
+           article.dataset.date = post.date; // Store date
+
+           article.innerHTML = `
+               <header>
+                   <center><h2 class="post-title">${post.title}</h2></center>
+                   <p class="post-meta">Posted on ${post.date} by ${post.author}</p>
+               </header>
+               <div class="post-content">
+                   <p style="color:#a89984">${post.content}</p>
+               </div>
+               <footer>
+                   <p class="post-tags">Tags: ${post.tags.map(tag => `<a href="#" style="color:#666">${tag}</a>`).join(', ')}</p>
+               </footer>
+           `;
+
+           blogContainer.appendChild(article);
+       });
+
+       // Add event listener to handle clicks on any blog post
+       blogContainer.addEventListener('click', function(event) {
+           if (event.target.closest('.blog-post')) {
+               const post = event.target.closest('.blog-post');
+               const fullContent = decodeURIComponent(post.dataset.fullContent);
+               const title = post.dataset.title;
+               const date = post.dataset.date;
+
+               // Show and populate the first .boxclassinfinite div with the full content
+               const boxclassinfinite = document.querySelector('.boxclassinfinite');
+               if (boxclassinfinite) {
+                   boxclassinfinite.innerHTML = `
+                   <div class="close-container close-btn">
+                   <div class="leftright"></div>
+                   <div class="rightleft"></div>
+                   <label class="close">close</label>
+               </div>
+                       <header>
+                           <h1 style="text-align: center;">${title}</h1>
+                           <p style="text-align: center; font-style: italic;">Posted on ${date}</p>
+                       </header>
+                       <div class="full-content">
+                           <p>${fullContent}</p>
+                       </div>
+                   `;
+                   boxclassinfinite.removeAttribute('hidden');
+                   boxclassinfinite.classList.remove('hide-animation'); 
+
+                   // Optional: Close the .boxclassinfinite div when clicking outside of it
+                   document.addEventListener('click', function(e) {
+                       if (!boxclassinfinite.contains(e.target) && !e.target.closest('.blog-post')) {
+                        boxclassinfinite.setAttribute('hidden', true);
+                       }
+                   });
+                   document.addEventListener('click', function(event) {
+                    const closeButton = event.target.closest('.close-container');
+                    const boxclassinfinite = document.querySelector('.boxclassinfinite');
+                    if (closeButton && boxclassinfinite) {
+                        boxclassinfinite.classList.add('hide-animation');
+                        boxclassinfinite.addEventListener('animationend', function() {
+                            boxclassinfinite.setAttribute('hidden', true);
+                        }, { once: true });
+                    }
+                });
+               }
+           }
+       });
+   })
+   .catch(error => console.error('Error loading blog posts:', error));
 });
 
 (function () {

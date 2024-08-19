@@ -262,6 +262,23 @@
 }
 
 </style>
+
+<style>
+  @keyframes closeAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+.boxclassinfinite.hide-animation {
+    animation: closeAnimation 0.3s forwards;
+}
+</style>
 <canvas  id="bgCanvas"></canvas>
 <body>
 
@@ -338,7 +355,16 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
   </table>
 </section>
 
-
+ 
+<div class="boxclassinfinite"  hidden>
+ 
+  <div class="close-container close-btn">
+    <div  class="leftright"></div>
+    <div  class="rightleft"></div>
+    <label class="close">close</label>
+  </div>
+ 
+</div>
 </body>
 
 <div class='cursor' id="cursor"></div>
@@ -417,5 +443,9 @@ window.addEventListener('scroll', function() {
       a.click();
       document.body.removeChild(a);
   });
+</script>
+
+<script>
+
 </script>
 </html>
