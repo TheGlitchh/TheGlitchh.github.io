@@ -1,6 +1,30 @@
 $(document).ready(function() {
     $(".closeclass, .close-container, .close-btn").hide();
-
+    fetch('./blog.json')
+    .then(response => response.json())
+    .then(data => {
+      const blogContainer = document.getElementById('blog-container');
+      data.forEach(post => {
+        const article = document.createElement('article');
+        article.classList.add('blog-post');
+        
+        article.innerHTML = `
+          <header>
+            <center><h2 class="post-title">${post.title}</h2></center>
+            <p class="post-meta">Posted on ${post.date} by ${post.author}</p>
+          </header>
+          <div class="post-content">
+            <p style="color:#a89984">${post.content}</p>
+          </div>
+          <footer>
+            <p class="post-tags">Tags: ${post.tags.map(tag => `<a href="#" style="color:#666">${tag}</a>`).join(', ')}</p>
+          </footer>
+        `;
+        
+        blogContainer.appendChild(article);
+      });
+    })
+    .catch(error => console.error('Error loading blog posts:', error));
     
 });
 

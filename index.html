@@ -220,6 +220,48 @@
 }
 
 </style>
+
+<style>
+  /* Define the keyframes for the fish-eye zoom effect with wave motion */
+@keyframes fishEyeWave {
+    0% {
+        transform: translateX(-100%) scale(0.8);
+        filter: blur(10px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(50%) scale(1.3);
+        filter: blur(4px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%) scale(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+/* Define the wave motion effect */
+@keyframes waveMotion {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Style for the animated text container */
+.post-title {
+    font-size: 50px;
+    margin: 100px 0 0;
+    text-align: center; /* Center the text */
+    animation: fishEyeWave 2s ease-out, waveMotion 2s ease-in-out infinite; /* Apply both animations */
+    display: inline-block; /* Ensure it doesn't span the entire width */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+</style>
 <canvas  id="bgCanvas"></canvas>
 <body>
 
@@ -262,45 +304,17 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
 <!--Second Card--> 
 <table width="100%" border="0" style="margin-left: 10px;">
   <tr>
-      <td>
-          <div class="boxclass1">
-              <div class="scrollable-content">
-                  <!-- Article 1 -->
-                  
-                  <article class="blog-post ">
-                      <header>
-                          <h2 class="post-title realname">Title of the Blog Post 1</h2>
-                          <p class="post-meta">Posted on January 1, 2023 by John Doe</p>
-                      </header>
-                      <div class="post-content">
-                          <p style="color:#a89984">This is the content of the first blog post.</p>
-                      </div>
-                      <footer>
-                          <p  class="post-tags">Tags: <a href="#" style="color:#666" >Tag1</a>, <a href="#" style="color:#666" >Tag2</a>, <a href="#" style="color:#666">Tag3</a></p>
-                      </footer>
-                  </article>
-                
-                  <!-- End Article 1 -->
-
-                  <!-- Article 2 -->
-                  <article class="blog-post">
-                      <header>
-                          <h2 class="post-title realname1">Title of the Blog Post 2</h2>
-                          <p class="post-meta">Posted on January 2, 2023 by Jane Doe</p>
-                      </header>
-                      <div class="post-content">
-                          <p style="color:#a89984" >This is the content of the second blog post.</p>
-                      </div>
-                      <footer>
-                          <p class="post-tags">Tags: <a style="color:#666" href="#">Tag4</a>, <a style="color:#666" href="#">Tag5</a>, <a  style="color:#666" href="#">Tag6</a></p>
-                      </footer>
-                  </article>
-                  <!-- End Article 2 -->
-              </div>
-          </div>
-      </td>
+    <td>
+      <div class="boxclass1">
+        <div id="blog-container" class="scrollable-content">
+          <!-- Blog posts will be dynamically inserted here -->
+        </div>
+      </div>
+    </td>
   </tr>
 </table>
+
+<!--- Third card-->
 <table width="100%">
   <tr> <td>  
     <div class="container">

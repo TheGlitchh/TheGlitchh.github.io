@@ -2,6 +2,21 @@
 
 $(document).ready(function () {
   $(".closeclass, .close-container, .close-btn").hide();
+  fetch('./blog.json').then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    var blogContainer = document.getElementById('blog-container');
+    data.forEach(function (post) {
+      var article = document.createElement('article');
+      article.classList.add('blog-post');
+      article.innerHTML = "\n          <header>\n            <center><h2 class=\"post-title\">".concat(post.title, "</h2></center>\n            <p class=\"post-meta\">Posted on ").concat(post.date, " by ").concat(post.author, "</p>\n          </header>\n          <div class=\"post-content\">\n            <p style=\"color:#a89984\">").concat(post.content, "</p>\n          </div>\n          <footer>\n            <p class=\"post-tags\">Tags: ").concat(post.tags.map(function (tag) {
+        return "<a href=\"#\" style=\"color:#666\">".concat(tag, "</a>");
+      }).join(', '), "</p>\n          </footer>\n        ");
+      blogContainer.appendChild(article);
+    });
+  })["catch"](function (error) {
+    return console.error('Error loading blog posts:', error);
+  });
 });
 
 (function () {

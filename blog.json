@@ -1,0 +1,23 @@
+[
+    {
+      "title": "Title of the Blog Post 1",
+      "date": "19 Aug, 2024",
+      "author": "Sourav Gope",
+      "content": "This is the content of the first blog post.",
+      "tags": ["Tag1", "Tag2", "Tag3"]
+    },
+    {
+      "title": "Title of the Blog Post 2",
+      "date": "19 Aug, 2024",
+      "author": "Sourav Gope",
+      "content": "This is the content of the second blog post.",
+      "tags": ["Tag4", "Tag5", "Tag6"]
+    },
+    {
+        "title": "Title of the Blog Post 3",
+        "date": "19 Aug, 2024",
+        "author": "Sourav Gope",
+        "content": "This is the content of the third blog post.",
+        "tags": ["Tag7", "Tag8", "Tag9"]
+      }
+  ]
