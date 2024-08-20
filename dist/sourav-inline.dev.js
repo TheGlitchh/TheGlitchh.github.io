@@ -25,7 +25,25 @@ $(document).ready(function () {
         return "<a href=\"#\" style=\"color:#666\">".concat(tag, "</a>");
       }).join(', '), "</p>\n               </footer>\n           ");
       blogContainer.appendChild(article);
-    }); // Add event listener to handle clicks on any blog post
+    });
+
+    function applyStaggeredAnimation() {
+      var titles = document.querySelectorAll('.post-title');
+      titles.forEach(function (title) {
+        var words = title.textContent.split(' ');
+        title.innerHTML = words.map(function (word, index) {
+          return "<span style=\"display:inline-block;\">".concat(word, "</span>");
+        }).join(' ');
+        var spans = title.querySelectorAll('span');
+        spans.forEach(function (span, i) {
+          span.style.animation = "revolveScale 0.4s forwards";
+          span.style.animationDelay = "".concat(i * 0.1, "s"); // Stagger the animation delay based on the word index
+        });
+      });
+    } // Call the function after adding all articles
+
+
+    applyStaggeredAnimation(); // Add event listener to handle clicks on any blog post
 
     blogContainer.addEventListener('click', function (event) {
       if (event.target.closest('.blog-post')) {

@@ -220,46 +220,24 @@
 </style>
 
 <style>
-  /* Define the keyframes for the fish-eye zoom effect with wave motion */
-@keyframes fishEyeWave {
-    0% {
-        transform: translateX(-100%) scale(0.8);
-        filter: blur(10px);
-        opacity: 0;
-    }
-    50% {
-        transform: translateX(50%) scale(1.3);
-        filter: blur(4px);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(100%) scale(1);
-        filter: blur(0);
-        opacity: 1;
-    }
+ .post-title span {
+	color: #c98a57; /* Color for the text */
+	opacity: 0; /* Initial opacity */
+	transform: translate(-150px, -50px) rotate(-180deg) scale(3); /* Initial transform */
+	animation: revolveScale 0.4s forwards; /* Apply the revolveScale animation */
 }
 
-/* Define the wave motion effect */
-@keyframes waveMotion {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
+/* Keyframes for Animation One */
+@keyframes revolveScale {
+	60% {
+		transform: translate(20px, 20px) rotate(30deg) scale(.3);
+	}
 
-/* Style for the animated text container */
-.post-title {
-  color:#d4a166;
-    font-size: 50px;
-    margin: 100px 0 0;
-    text-align: center; /* Center the text */
-    animation: fishEyeWave 2s ease-out, waveMotion 2s ease-in-out infinite; /* Apply both animations */
-    display: inline-block; /* Ensure it doesn't span the entire width */
-    font-weight: bold; /* Optional: Make the text bold */
+	100% {
+		transform: translate(0) rotate(0) scale(1);
+		opacity: 1;
+	}
 }
-
 </style>
 
 <style>

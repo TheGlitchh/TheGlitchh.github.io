@@ -32,6 +32,23 @@ $(document).ready(function() {
            blogContainer.appendChild(article);
        });
 
+       function applyStaggeredAnimation() {
+        const titles = document.querySelectorAll('.post-title');
+        titles.forEach((title) => {
+            const words = title.textContent.split(' ');
+            title.innerHTML = words.map((word, index) => `<span style="display:inline-block;">${word}</span>`).join(' ');
+
+            const spans = title.querySelectorAll('span');
+            spans.forEach((span, i) => {
+                span.style.animation = `revolveScale 0.4s forwards`;
+                span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation delay based on the word index
+            });
+        });
+    }
+
+    // Call the function after adding all articles
+    applyStaggeredAnimation();
+
        // Add event listener to handle clicks on any blog post
        blogContainer.addEventListener('click', function(event) {
            if (event.target.closest('.blog-post')) {
@@ -81,6 +98,7 @@ $(document).ready(function() {
        });
    })
    .catch(error => console.error('Error loading blog posts:', error));
+   
 });
 
 (function () {
