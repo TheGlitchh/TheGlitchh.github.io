@@ -18,9 +18,7 @@
 </head>
 
 
-	<style>
-    
-
+	<style>  
     /* Style for the blog post */
     .blog-post {
   font-family: Arial, sans-serif;
@@ -288,7 +286,7 @@
 <tr> <td style="padding-left:-20px;" rowspan="4"><a href="https://github.com/theglitchh"><img style="" class="imgclass1" src="./res/PXL_20230729_140247553.jpg" alt="souravImg"> </a>  </td>
 <td><p class="p1 gradient" style="font-weight: bold; font-size: 20px;">Sourav Gope</p></td>
 <td rowspan="4" valign="top" class="download-cv-container">
-  <button id="downloadCV" class="download-cv-btn">  CV</button>
+  <button id="downloadCV" class="download-cv-btn"><i class="fas fa-id-card"></i></button>
 </td>
 </tr>
 <tr><td><p><i class="fa-solid fa-calendar-days"></i> Age: 23</p></td></tr>
@@ -432,7 +430,7 @@ window.addEventListener('scroll', function() {
 });
 </script>
 
-<script src="sourav-anim1.js"></script>
+<script src="sourav-inline.js"></script>
 
 <script>
   document.getElementById('downloadCV').addEventListener('click', function() {
@@ -447,6 +445,12 @@ window.addEventListener('scroll', function() {
 </script>
 
 <script>
+document.getElementById("downloadCV").addEventListener("mouseover", function() {
+    this.innerHTML = "CV";
+});
 
+document.getElementById("downloadCV").addEventListener("mouseout", function() {
+    this.innerHTML = '<i class="fas fa-id-card"></i>';
+});
 </script>
 </html>
