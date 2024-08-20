@@ -282,17 +282,26 @@
 <style>
 #boxcontainer {
     display: flex;
+    
+    
+
     justify-content: space-between;
     align-items: flex-start;
     margin: 0 auto;
-    max-width: 90%;
+    max-width: 1000px;
     padding: 20px;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    
+   
 }
+
 </style>
 <canvas  id="bgCanvas"></canvas>
 <body>
-  <div id="boxcontainer">
+<div id="boxcontainer">
+  
 <div class="boxclass">
 <table width="100%" border="0">
 <tr> <td style="padding-left:-20px;" rowspan="4"><a href="https://github.com/theglitchh"><img style="" class="imgclass1" src="./res/PXL_20230729_140247553.jpg" alt="souravImg"> </a>  </td>
@@ -333,7 +342,7 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
 <table width="100%" border="0" style="margin-left: 10px;">
   <tr>
     <td>
-      <div class="boxclass1">
+      <div width="100%" class="boxclass1">
         <div id="blog-container" class="scrollable-content">
           <!-- Blog posts will be dynamically inserted here -->
         </div>
@@ -398,31 +407,32 @@ let lastScrollY = window.scrollY; // Track the previous scroll position
 window.addEventListener('scroll', function() {
     const container = document.querySelector('.container');
     const currentScrollY = window.scrollY;
+    
 
     // Check if the user is scrolling up
     if (currentScrollY < lastScrollY) {
         // Scroll up detected
         $("#boxcontainer").fadeIn(500); 
-        $("#container").fadeOut(50); 
+        $("#sectionToNavigate").fadeOut(50);
+        $("#sectionToNavigate").hide(); 
+       // $(".container").hide();
         window.scrollTo({
             top: 0,
             behavior: 'smooth' // For smooth scrolling to the top
         });
-        $(container).css('opacity', '1').css('visibility', 'visible'); // Fade in by setting opacity to 1
         hasClickedChevron = false; // Reset the flag
     } else if (currentScrollY > 10) {
         // Check if the scroll position is greater than 10px
         if (!hasClickedChevron) {
             document.querySelector(".chevron").click();
-            $("#container").fadeIn(500); 
+            $("#sectionToNavigate").fadeIn(500); 
             $("#boxcontainer").fadeOut(50);
+            $("#boxcontainer").hide(); 
             hasClickedChevron = true; // Set the flag to true after clicking
-             $(container).css('opacity', '0').css('visibility', 'hidden');
+          
         }
-        $(container).css('opacity', '0').css('visibility', 'hidden'); // Fade out by setting opacity to 0
+      
     } else {
-        // If scrolled up a bit (less than or equal to 10px), fade in
-        $(container).css('opacity', '1').css('visibility', 'visible'); // Fade in by setting opacity to 1
         hasClickedChevron = false; // Reset the flag
     }
 
@@ -434,6 +444,7 @@ window.addEventListener('scroll', function() {
 <script>
   document.querySelectorAll('.chevron').forEach(function(chevron) {
   chevron.addEventListener('click', function() {
+    $("#sectionToNavigate").show(); 
     var target = this.getAttribute('data-scroll-to');
     var targetElement = document.querySelector(target);
     if (targetElement) {

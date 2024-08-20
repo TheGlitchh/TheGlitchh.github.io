@@ -154,7 +154,7 @@ ul li:nth-child(4) a:before {
 }
   
 .boxclass, .boxclass1 {
-	margin-left:16px;
+	margin-left:90px;
     background: var(--background);
     max-width: 450px;
     min-height: 250px;
@@ -165,11 +165,13 @@ ul li:nth-child(4) a:before {
     transition: margin 100ms;
     overflow-y: auto;
     -ms-overflow-style: none;
-    scrollbar-width: auto;
+    scrollbar-width: none;
 	gap: 4px;
 }
 .boxclass {
+	margin-left:-65px;
 	top:1%;
+	position: absolute;
 }
 .boxclass1 {
 	position: absolute;
