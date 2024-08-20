@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    var checkscroll = window.scrollY;
+    if(checkscroll == 0){
+      //  $(".container").hide();
+    }
    // $(".closeclass, .close-container, .close-btn").hide();
    fetch('./blog.json')
    .then(response => response.json())
