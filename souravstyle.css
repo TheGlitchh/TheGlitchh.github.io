@@ -127,12 +127,12 @@ ul li:nth-child(4) a:before {
   }
   .boxclass3 {
 	position: absolute;
-	right: 15%;
+	margin-top:150px;
 	height:150px;
+	margin-left:-340pt;
 	background: var(--background);
 	min-width: 850px;
 	min-height: 450px;
-	top: 120%; /* Same as boxclass */
 	padding: 40px 20px 20px 30px;
 	border-radius: 8px;
 	box-shadow: var(--shadow);

@@ -79,7 +79,7 @@
   position: relative;
   width: 24px;
   height: 24px;
-  transition: opacity 0.5s ease-in-out; /* Transition for opacity changes */
+  transition: opacity 0.5s ease, visibility 0.5s ease;
   opacity: 1; 
 }
 
@@ -356,17 +356,17 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
 
 </table>
 
+<div class="container">
+ 
 <section id="sectionToNavigate" style="height: 1000px; background-color:#ff000000">
   <!-- Content of the section -->
-  <table width="100%">
-    <tr>
-      <td>
-        <div class="boxclass3"></div>
-      </td>
-    </tr>
-  </table>
+
+       <div class="boxclass3"></div>
+      
+
 </section>
 
+</div>
  
 <div class="boxclassinfinite"  hidden>
  
@@ -402,22 +402,27 @@ window.addEventListener('scroll', function() {
     // Check if the user is scrolling up
     if (currentScrollY < lastScrollY) {
         // Scroll up detected
+        $("#boxcontainer").fadeIn(500); 
+        $("#container").fadeOut(50); 
         window.scrollTo({
             top: 0,
             behavior: 'smooth' // For smooth scrolling to the top
         });
-        container.style.opacity = '1'; // Fade in by setting opacity to 1
+        $(container).css('opacity', '1').css('visibility', 'visible'); // Fade in by setting opacity to 1
         hasClickedChevron = false; // Reset the flag
     } else if (currentScrollY > 10) {
         // Check if the scroll position is greater than 10px
         if (!hasClickedChevron) {
             document.querySelector(".chevron").click();
+            $("#container").fadeIn(500); 
+            $("#boxcontainer").fadeOut(50);
             hasClickedChevron = true; // Set the flag to true after clicking
+             $(container).css('opacity', '0').css('visibility', 'hidden');
         }
-        container.style.opacity = '0'; // Fade out by setting opacity to 0
+        $(container).css('opacity', '0').css('visibility', 'hidden'); // Fade out by setting opacity to 0
     } else {
         // If scrolled up a bit (less than or equal to 10px), fade in
-        container.style.opacity = '1'; // Fade in by setting opacity to 1
+        $(container).css('opacity', '1').css('visibility', 'visible'); // Fade in by setting opacity to 1
         hasClickedChevron = false; // Reset the flag
     }
 
@@ -432,7 +437,7 @@ window.addEventListener('scroll', function() {
     var target = this.getAttribute('data-scroll-to');
     var targetElement = document.querySelector(target);
     if (targetElement) {
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 30; // 10px above
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 450; // 10px above
 
             window.scrollTo({
                 top: targetPosition,
