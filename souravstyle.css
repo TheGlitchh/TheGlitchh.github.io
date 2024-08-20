@@ -132,7 +132,7 @@ ul li:nth-child(4) a:before {
 	background: var(--background);
 	min-width: 850px;
 	min-height: 450px;
-	top: 120%; /* Same as boxclass */closeclass
+	top: 120%; /* Same as boxclass */
 	padding: 40px 20px 20px 30px;
 	border-radius: 8px;
 	box-shadow: var(--shadow);
@@ -152,28 +152,33 @@ ul li:nth-child(4) a:before {
     top: 15%;
     gap: 2%; /* Space between the boxes */
 }
-  .boxclass {
-	position: absolute;
-	left: 7%;
-	background: var(--background);
-	max-width: 450px;
-	min-height: 250px;
-	top: 15%;
-	margin-top:7%;
-	padding: 40px 20px 20px 30px;
-	border-radius: 8px;
-	box-shadow: var(--shadow);
-	transition: margin 100ms;
-  }
   
-  .boxclass1 {
+.boxclass, .boxclass1 {
+	margin-left:16px;
+    background: var(--background);
+    max-width: 450px;
+    min-height: 250px;
+	margin-top:50px;
+    padding: 40px 20px 20px 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: margin 100ms;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: auto;
+	gap: 4px;
+}
+.boxclass {
+	top:1%;
+}
+.boxclass1 {
 	position: absolute;
-	right: 7%;
+	top:27px;
 	height:250px;
+	
 	background: var(--background);
 	min-width: 450px;
 	min-height: 252px;
-	top: 14.5%; /* Same as boxclass */
 	padding: 40px 20px 20px 30px;
 	border-radius: 8px;
 	box-shadow: var(--shadow);
@@ -182,22 +187,23 @@ ul li:nth-child(4) a:before {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	text-align: left;
-  }
-
-.boxclass1 h1{
-text-align: center;
 }
-.boxclass1::-webkit-scrollbar {
-	display: none;
-  }
 
-  @media screen and (max-width: 768px) {
-    .container {
+.boxclass1 h1 {
+    text-align: center;
+}
+
+.boxclass1::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    #boxcontainer {
         flex-direction: column;
         gap: 20px;
     }
 
-    .boxclass, .boxclass2 {
+    .boxclass, .boxclass1 {
         max-width: 100%;
     }
 }
