@@ -3,6 +3,7 @@ $(document).ready(function() {
     if(checkscroll == 0){
       //  $(".container").hide();
     }
+    $("#sectionToNavigate").hide(); 
    // $(".closeclass, .close-container, .close-btn").hide();
    fetch('./blog.json')
    .then(response => response.json())

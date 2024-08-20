@@ -3,9 +3,10 @@
 $(document).ready(function () {
   var checkscroll = window.scrollY;
 
-  if (checkscroll == 0) {} //  $(".container").hide();
-  // $(".closeclass, .close-container, .close-btn").hide();
+  if (checkscroll == 0) {//  $(".container").hide();
+  }
 
+  $("#sectionToNavigate").hide(); // $(".closeclass, .close-container, .close-btn").hide();
 
   fetch('./blog.json').then(function (response) {
     return response.json();
