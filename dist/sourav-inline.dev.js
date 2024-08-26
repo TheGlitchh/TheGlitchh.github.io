@@ -291,3 +291,76 @@ for (var r = document.querySelectorAll(".hover-target"), a = r.length - 1; a >= 
 function o(t) {
   t.addEventListener("mouseover", n), t.addEventListener("mouseout", s);
 }
+
+document.getElementById("downloadCV").addEventListener("mouseover", function () {
+  this.innerHTML = "CV";
+});
+document.getElementById("downloadCV").addEventListener("mouseout", function () {
+  this.innerHTML = '<i class="fas fa-id-card"></i>';
+});
+document.getElementById('downloadCV').addEventListener('click', function () {
+  // Create a link element
+  var a = document.createElement('a');
+  a.href = './resume.pdf'; // Path to the file
+
+  a.download = 'resume.pdf'; // Name of the downloaded file
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+});
+document.querySelectorAll('.chevron').forEach(function (chevron) {
+  chevron.addEventListener('click', function () {
+    $("#sectionToNavigate").show();
+    var target = this.getAttribute('data-scroll-to');
+    var targetElement = document.querySelector(target);
+
+    if (targetElement) {
+      var targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 450; // 10px above
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth' // For smooth scrolling
+
+      });
+    }
+  });
+});
+var hasClickedChevron = false;
+document.querySelector('.scrollable-content').addEventListener('scroll', function () {
+  jquery(".post-title").removeClass("realname");
+});
+var lastScrollY = window.scrollY; // Track the previous scroll position
+
+window.addEventListener('scroll', function () {
+  var container = document.querySelector('.container');
+  var currentScrollY = window.scrollY; // Check if the user is scrolling up
+
+  if (currentScrollY < lastScrollY) {
+    // Scroll up detected
+    $("#boxcontainer").fadeIn(500);
+    $("#sectionToNavigate").fadeOut(50);
+    $("#sectionToNavigate").hide(); // $(".container").hide();
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // For smooth scrolling to the top
+
+    });
+    hasClickedChevron = false; // Reset the flag
+  } else if (currentScrollY > 10) {
+    // Check if the scroll position is greater than 10px
+    if (!hasClickedChevron) {
+      document.querySelector(".chevron").click();
+      $("#sectionToNavigate").fadeIn(500);
+      $("#boxcontainer").fadeOut(50);
+      $("#boxcontainer").hide();
+      hasClickedChevron = true; // Set the flag to true after clicking
+    }
+  } else {
+    hasClickedChevron = false; // Reset the flag
+  } // Update the last scroll position
+
+
+  lastScrollY = currentScrollY;
+});
