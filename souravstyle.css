@@ -110,6 +110,7 @@ ul li:nth-child(4) a:before {
   .boxclassinfinite {
 	position: absolute;
 	left: 3%;
+	right:3%;
 	height:82%;
 	background: var(--background);
 	min-width: 90%;

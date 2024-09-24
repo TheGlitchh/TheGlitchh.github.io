@@ -1,26 +1,18 @@
 [
     {
-      "title": "Title of the Blog Post 1",
-      "date": "19 Aug, 2024",
+      "title": "A summary of Sourav",
+      "date": "24 Sep, 2024",
       "author": "Sourav Gope",
-      "content": "This is the content of the first blog post.",
-      "tags": ["Tag1", "Tag2", "Tag3"],
-      "full": "This is the full content of the first blog post. It contains all the details and information about the topic covered in the post.1"
+      "content": "A Summary on What I have been doing in Life.",
+      "tags": ["purpose of life", "stoicism", "awakening"],
+      "full": "Created this dynamic blog post (using json) for easier access just to keep things organised, now to start with the blog post, I was a major science enthusiast since my 8th class, I have been learning about classical physics and quantum mechanics since my 10th standard afterwards I had to shift from my small city to the heart or capital of tripura state(India) for my higher studies, I have choosen science as my stream for my higher studies, during 11th , I have caught up with a very rare disease called GB Syndrome and could barely give the 12th exam, I have passed 12th standard with very average marks and during my illness I was fond of the Android firmware community and was really into flashing android custom Roms, thats where my interest in tech and programming began, I have then dropped my plan of pursuing anything in space science like particle physics or quantum mechanics and was totally into developing/programming, then I have decided to join a 3rd tier college for my btech as that was the only option for me as I couldn't clear JEE and could not get NIT or IIT. During the first 2 years I was into lower level coding and was officially maintaining Android projects mainly Custom Android sources like DotOS, SuperiorOS, Liquid Remix, ViperOS, then as my interest shifted I got introduced to web development from various subreddits i used to follow and i was doing a bit of that too, I was lucky that i got a job offer during my college campus for a web dev job at Hyderabad. Hence I shifted there and started pursuing that job and i am still pursuing this job."
     },
     {
-      "title": "Title of the Blog Post 2",
-      "date": "19 Aug, 2024",
+      "title": "A Purpose Driven Life",
+      "date": "24 Sep, 2024",
       "author": "Sourav Gope",
-      "content": "This is the content of the second blog post.",
-      "tags": ["Tag4", "Tag5", "Tag6"],
-      "full": "This is the full content of the first blog post. It contains all the details and information about the topic covered in the post.2"
-    },
-    {
-        "title": "Title of the Blog Post 3",
-        "date": "19 Aug, 2024",
-        "author": "Sourav Gope",
-        "content": "This is the content of the third blog post.",
-        "tags": ["Tag7", "Tag8", "Tag9"],
-        "full": "This is the full content of the first blog post. It contains all the details and information about the topic covered in the post.3"
-      }
+      "content": "Gonna talk about what I wanna do in Life",
+      "tags": ["A vision", "reawakening", "purpose"],
+      "full": "Now that i am in web dev, I feel I should be gravitating towards lower level coding like i used to but this time it won't be saggregated and I would be making it count and will be working in a 'brick by brick' method where now i am starting to refocus my attention on c++ and c along with all the GATE Topics of CS to solidify my confidence in CS and all of its subject, as pure CS is mostly lower level, I feel I can do something nice in this field including research and i think thats where my core interest lies on, even though web is nice and all but I feel right at home doing lower level coding as it ties me close to computer science. I dont know what will be happening in future but i will be setteling with lower level and that is a decision i have made with a week of self realisation."
+    }
   ]
