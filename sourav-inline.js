@@ -336,6 +336,7 @@ document.querySelectorAll('.chevron').forEach(function(chevron) {
               });
           }
     });
+    applyStaggeredAnimationProjects();
   });
 
   let hasClickedChevron = false;
@@ -382,3 +383,51 @@ window.addEventListener('scroll', function() {
    // Update the last scroll position
    lastScrollY = currentScrollY;
 });
+
+function openGithub() {
+    window.open("${project.codeLink}", "_blank");
+  }
+  // Fetch project data from projects.json
+fetch('./projects.json')
+.then(response => response.json())
+.then(data => {
+    const projectContainer = document.querySelector('.boxclass3');
+
+    data.forEach(project => {
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project-card');
+
+        projectElement.innerHTML = `
+            <div class="project-header">
+               <center> <h3>${project.title}</h3></center>
+                <center><p>${project.date}</p></center>
+            </div>
+            <div class="project-content">
+             <center>   <p>${project.description}</p></center>
+            </div>
+            <div class="project-footer">
+             <center><button target="_blank" onclick="window.open('${project.codeLink}', '_blank')" id='somebutton' class="button-2">Github</button></center>
+            </div>
+        `;
+
+        projectContainer.appendChild(projectElement);
+    });
+})
+.catch(error => console.error('Error loading project data:', error));
+
+
+function applyStaggeredAnimationProjects() {
+    const projectTitles = document.querySelectorAll('.project-header h3');
+    projectTitles.forEach((title) => {
+        const words = title.textContent.split(' ');
+        title.innerHTML = words.map((word, index) => `<span style="display:inline-block;">${word}</span>`).join(' ');
+
+        const spans = title.querySelectorAll('span');
+        spans.forEach((span, i) => {
+            span.style.animation = `revolveScaleP 0.4s forwards`;
+            span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation delay based on the word index
+        });
+    });
+}
+
+

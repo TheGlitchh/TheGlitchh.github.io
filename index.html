@@ -244,6 +244,18 @@
 		opacity: 1;
 	}
 }
+@keyframes revolveScaleP {
+  60% {
+      transform: translate(20px, 20px) rotate(30deg) scale(0.3);
+      filter: blur(10px);
+  }
+
+  100% {
+      transform: translate(0) rotate(0) scale(1);
+      opacity: 1;
+      filter: blur(0);
+  }
+}
 </style>
 
 <style>
@@ -281,6 +293,65 @@
    
 }
 
+</style>
+
+
+<style>
+  .button-2 {
+    background-color: #282828;
+    border-radius: 15px;
+    border-width: 0;
+    color: #fff9a7;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    margin-bottom: 6px;
+    padding: 5px 10px;
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    animation: mix 5s cubic-bezier(0.23, 1, 0.320, 1) infinite;
+    &::after {
+      background: transparent !important;
+    }
+  }
+  
+  .button-2:hover {
+    background-color: rgba(0,0,0,0);
+    color: #ffffc4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation-play-state: paused;
+  }
+  
+  @keyframes mix {
+    30% {
+      box-shadow: 0 -0.5em 1em 1.5em rgba(255, 0, 200, 0.5),
+                  2em -0.5em 1em 1.5em rgba(255, 50, 0, 0.8),
+                  -2em 1em 1.5em 1em rgba(155, 200, 0, 0.5),
+                  -2em -1em 1em 1em rgba(200, 0, 150, 0.6),
+                  0 1.5em 1em 1em rgba(20, 250, 0, 0.5),
+                  1em 0.5em 1em 1em rgba(50, 10, 250, 0.5);
+    }
+    60% {
+      box-shadow: 1em 0.5em 1em 1.5em rgba(55, 0, 200, 0.5),
+                  1.5em 0.5em 1em 1.5em rgba(25, 150, 0, 0.6),
+                  1.5em -1em 1.5em 1.5em rgba(155, 200, 0, 0.5),
+                  -2em 1em 1em 1.5em rgba(200, 0, 50, 0.6),
+                  0 -1.5em 1em 1.5em rgba(200, 250, 0, 0.5),
+                  -1em 0.5em 1em 1.5em rgba(50, 210, 250, 0.6);
+    }
+  }
+  
+ 
 </style>
 <canvas  id="bgCanvas"></canvas>
 <body>
@@ -354,7 +425,10 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
 <section id="sectionToNavigate" style="height: 1000px; background-color:#ff000000">
   <!-- Content of the section -->
 
-       <div class="boxclass3"></div>
+       <div class="boxclass3">
+
+
+       </div>
       
 
 </section>
@@ -379,4 +453,5 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
 
 
 <script src="sourav-inline.js"></script>
+
 </html>

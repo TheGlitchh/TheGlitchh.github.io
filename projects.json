@@ -1,0 +1,24 @@
+[
+    {
+      "title": "Gruvbox-Kvantum",
+      "date": "July 2022",
+      
+      "description": "A Gruvbox color scheme based kvantum theme used to theme Kde Plasma and Qt5/Qt6 applications",
+      "codeLink": "https://github.com/isouravgope/Gruvbox-Kvantum.git"
+    },
+    {
+      "title": "Linux Dotfiles",
+      "date": "January 2022",
+      
+      "description": "This is a collection of my config files which is includes configuration files for i3wm, picom, neovim, polybar, glava, mpd, ncmpcpp, rofi, etc.",
+      "codeLink": "https://github.com/isouravgope/dotfiles.git"
+    },
+    {
+      "title": "Spotify Adblocking Script for Linux",
+      "date": "January 2021",
+      
+      "description": "This project consists of an installation script for blocking ads in spotify using host blocking mechanism.",
+      "codeLink": "https://github.com/isouravgope/spotify-adblock-linux.git"
+    }
+  ]
+  
