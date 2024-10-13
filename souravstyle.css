@@ -271,33 +271,34 @@ ul li:nth-child(4) a:before {
 }
   
 .boxclass, .boxclass1 {
-	margin-left:90px;
-    background: var(--background);
-    max-width: 450px;
-    min-height: 250px;
-	margin-top:50px;
-    padding: 40px 20px 20px 30px;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    transition: margin 100ms;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+	margin-left: 90px;
+	background: var(--background);
+	max-width: 450px;
+	min-height: 250px;
+	margin-top: 50px;
+	padding: 40px 20px 20px 30px;
+	border-radius: 8px;
+	box-shadow: var(--shadow);
+	transition: margin 100ms;
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 	gap: 4px;
-}
-.boxclass {
-	margin-left:-65px;
-	top:1%;
-	position: absolute;
-}
-.boxclass1 {
-	position: absolute;
-	top:27px;
-	height:250px;
+	}
 	
+	.boxclass {
+	margin-left: -65px;
+	top: 1%;
+	position: absolute;
+	height: 250px;
+	}
+	
+	.boxclass1 {
+	position: absolute;
+	top: 27px;
+	height: 250px;
 	background: var(--background);
 	min-width: 450px;
-	min-height: 260px;
 	padding: 40px 20px 20px 30px;
 	border-radius: 8px;
 	box-shadow: var(--shadow);
@@ -306,7 +307,7 @@ ul li:nth-child(4) a:before {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	text-align: left;
-}
+	}
 
 .boxclass1 h1 {
     text-align: center;
