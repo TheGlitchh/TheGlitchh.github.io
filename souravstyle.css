@@ -280,7 +280,7 @@ ul li:nth-child(4) a:before {
 	border-radius: 8px;
 	box-shadow: var(--shadow);
 	transition: margin 100ms;
-	overflow-y: auto;
+	overflow-y: hidden;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	gap: 4px;
