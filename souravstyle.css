@@ -297,7 +297,7 @@ ul li:nth-child(4) a:before {
 	
 	background: var(--background);
 	min-width: 450px;
-	min-height: 252px;
+	min-height: 260px;
 	padding: 40px 20px 20px 30px;
 	border-radius: 8px;
 	box-shadow: var(--shadow);
