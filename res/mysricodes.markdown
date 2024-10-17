@@ -779,11 +779,8 @@ End Unverified %]
 ## StartOf Subroutine
 
 ```
-
-
-ADD(ParentListName(),1,5)
+ADD(ParentListName(),1,18)
 Randomize()
-
 
 Begin Unverified Perl
 use List::Util qw(shuffle);
@@ -812,12 +809,21 @@ sub GroupRandN
 	return @ar;
 }
 
-my $li=LISTVALUESARRAY("S1Const");my $l=substr($li,1,length($li)-2);my @ar=split(",",$l);
-my @nums=(2,3,4,5);
+my $li=LISTVALUESARRAY("S10RandConst");my $l=substr($li,1,length($li)-2);my @ar=split(",",$l);
+my @nums=(1);
 my @RowArray=GroupRandN(\@nums,\@ar,0); #Randomize with in
-
-#my @nums1=(1);
-#my @RowArray=GroupRandN(\@nums1,\@RowArray,1);
+my @nums1=(2,3);
+my @RowArray=GroupRandN(\@nums1,\@RowArray,0); #Randomize with in
+my @nums2=(4,5,6,7);
+my @RowArray=GroupRandN(\@nums2,\@RowArray,0); #Randomize with in
+my @nums3=(8,9,10);
+my @RowArray=GroupRandN(\@nums3,\@RowArray,0); #Randomize with in
+my @nums4=(11,12);
+my @RowArray=GroupRandN(\@nums4,\@RowArray,0); #Randomize with in
+my @nums5=(13,14,15);
+my @RowArray=GroupRandN(\@nums5,\@RowArray,0); #Randomize with in
+my @nums6=(16,17,18);
+my @RowArray=GroupRandN(\@nums6,\@RowArray,0); #Randomize with in
 
 REMOVE(PARENTLISTNAME());
 for(my $a=0;$a<@RowArray;$a++)
@@ -825,9 +831,6 @@ for(my $a=0;$a<@RowArray;$a++)
     ADD(PARENTLISTNAME(),$RowArray[$a]);
 }
 End Unverified
-ADD(ParentListName(),6)
-
-
 
 ```
 
