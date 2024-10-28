@@ -856,3 +856,25 @@ if([% ListLength(A1RowList) %]<=3)
 ```
 
 ** EndOf Alt Color Remove**
+
+## Start of Other Specify checkbox
+```
+if(SSI_GetValue("[% QuestionName() %]_r16_other")!="" && SSI_GetValue("[% QuestionName() %]_r16_c1")!=1)
+{
+	strErrorMessage = "You forgot to answer this question.<br>Please select your response in the 'Other' row if you fill in the 'Other specify' box.";
+	$(".grid_r13:lt(2)").addClass("error_highlight_top");
+	$(".grid_r13:lt(2)").addClass("error_highlight_bottom");
+	$(".grid_r13:first").addClass("error_highlight_left");
+	$(".grid_r13:eq(1)").addClass("error_highlight_right");
+	$(".grid_r13").css("border-width","2px");
+	
+}
+else if(SSI_GetValue("[% QuestionName() %]_r16_other")=="" && SSI_GetValue("[% QuestionName() %]_r16_c1")==1)
+{
+	strErrorMessage = "You forgot to answer this question.<br>If you select 'Other', then please specify your answer in the text box provided.";
+	$("#[% QuestionName() %]_r13_other").addClass("error_highlight");	
+}
+```
+
+** End of Other Specify checkbox**
+
