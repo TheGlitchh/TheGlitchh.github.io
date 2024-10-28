@@ -878,3 +878,44 @@ else if(SSI_GetValue("[% QuestionName() %]_r16_other")=="" && SSI_GetValue("[% Q
 
 ** End of Other Specify checkbox**
 
+## Start of Dynamic radio button (2) 
+
+```
+<script type="text/javascript">
+$(".grid_header_cell").attr("colspan",2);
+$(".grid_header_cell").prev().hide();
+$(".grid_header_cell").removeClass("alt_color2").addClass("alt_color1");
+</script>
+<script type="text/javascript">
+$("#[% QuestionName() %]_r17_c1").prop("type","radio");			
+
+function SSI_CustomGraphicalRadiobox(GraphicalRadioboxObj, InputObj)
+{
+    var id=InputObj.id.split("_")[1].substr(1); 
+	var idc=InputObj.id.split("_")[2].substr(1); 
+    var ar = [% ListValuesArray(A13RowConst) %];		//Update the list used in the current question
+	 for(i=0;i<ar.length;i++)
+		{
+			if(ar[i]!=id)
+			{
+		    SSI_SetSelect("[% QuestionName() %]_r"+ar[i]+"_c"+idc, false);
+			$("#[% QuestionName() %]_r"+ar[i]+"_other").val("").removeClass("x onX");
+			}
+		}
+}
+</script>
+<script type="text/javascript">
+//code for checkbox removing 'x' mark
+function SSI_CustomGraphicalCheckbox(GraphicalCheckboxObj, InputObj, blnCheck)
+{
+ 	var id=InputObj.id;
+	var other=$("#"+id).closest('tr').find('td.row_label_cell').find(".open_end_text_box").attr("id");
+	if(blnCheck==false && other)
+	{
+		$('#'+other).val("").removeClass("x onX");
+	}
+}
+</script>
+```
+** End of Dynamic radio button (2)**
+
