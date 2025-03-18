@@ -934,6 +934,54 @@ else
 End Unverified
 ```
 
-** Start of Auto Punch code **
+** End of Auto Punch code **
 
+
+## Start of Openend with checkbox and n=3
+```
+$(".error_highlight").removeClass("error_highlight");
+
+// Regex for special characters (excluding alphanumeric)
+var spclchar = /^[\\.`,*:;"'~!@#$%{}\[\]|^&*()_+\-=\/?><\s]+$/;
+var sp = /^\s+$/; // Regex for spaces
+
+// Get user input
+var b = "" + SSI_GetValue("B6c_r1_c1");
+// var b = $.trim($("#[% QuestionName() %]").val()); // Alternative
+
+var n = 3; // Minimum number of words required
+var flow = true;
+var flow1 = false; // Should be false initially
+
+var chararray = b.trim().split(/\s+/); // Split input into words
+var length = chararray.length;
+
+// Check each word
+for (var i = 0; i < length; i++) {
+    if (spclchar.test(chararray[i])) {
+        flow1 = true; // If any word is just special characters, set flag
+    }
+}
+
+if(SSI_GetValue("B6c_r2_c1") !=1){
+	if ($.trim(b) == "") {
+    strErrorMessage = "You forgot to answer this question.";
+    flow = false;
+}
+
+if ((spclchar.test($.trim(b)) || flow1) && flow) {
+    strErrorMessage = "Please provide a valid response.";
+    flow = false;
+}
+
+if (length < n && flow) {
+    strErrorMessage = "Your response must contain at least " + n + " words.";
+    // $("#[% QuestionName() %]").addClass("error_highlight");
+}
+}
+
+
+```
+
+** Start of Openend with checkbox and n=3 **
 
