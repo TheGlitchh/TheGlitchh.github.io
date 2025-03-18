@@ -919,3 +919,21 @@ function SSI_CustomGraphicalCheckbox(GraphicalCheckboxObj, InputObj, blnCheck)
 ```
 ** End of Dynamic radio button (2)**
 
+## Start of Auto Punch code 
+```Begin Unverified Perl
+if(VALUE("B3_r14_c1")>0)
+{
+	
+	ADD(PARENTLISTNAME(),1);
+	SETVALUE("E1",1);
+}
+else
+{
+	ADD(PARENTLISTNAME(),1,2);
+}
+End Unverified
+```
+
+** Start of Auto Punch code **
+
+
