@@ -983,5 +983,321 @@ if (length < n && flow) {
 
 ```
 
-** Start of Openend with checkbox and n=3 **
+** End of Openend with checkbox and n=3 **
+
+## Start of pipein using map
+```
+<script>
+let kRaw = "[% ListValuesArray(C12HelperConst) %]";
+let k;
+
+try {
+    k = JSON.parse(kRaw);
+} catch (e) {
+    k = [];
+}
+	console.log(kRaw)
+console.log(k)
+let valueMap = {
+    1: 8,
+    2: 9,
+    3: 10,
+    4: 16,
+    5: 11,
+    6: 12,
+    7: 15,
+    8: 13,
+    9: 14
+};
+
+// Apply the mapping
+k = k.map(val => valueMap[val] || val);
+for (let i = 0; i < k.length; i++) {
+    $("#C12_r"+k[i]+"_c1_graphical").hide();
+	$("#C12_r"+k[i]+"_c2_graphical").hide();
+    $(".grid_c1.grid_r" + k[i]).removeClass("clickable");
+    $(".grid_c1.grid_r" + k[i]).addClass("cgrey");
+	$(".grid_c2.grid_r" + k[i]).removeClass("clickable");
+    $(".grid_c2.grid_r" + k[i]).addClass("cgrey");
+	
+	$(".grid_c3.grid_r" + k[i]).removeClass("clickable");
+    $(".grid_c3.grid_r" + k[i]).addClass("cgrey");
+	$("#[% QuestionName() %]_r"+k[i]+"_c3_graphical").addClass("radioboxselected");
+	SSI_SetSelect("[% QuestionName() %]_r"+k[i]+"_c3", true); 
+}
+var i;
+for(i=0; i<[% ListLength(C12RowList) %]; i++){
+	$("#[% QuestionName() %]_r"+i+"_c3").prop("type","radio");	
+}
+$("#C12_r19_c3_graphical").hide();
+			$(".grid_c3.grid_r19").removeClass("clickable");
+		$(".grid_c3.grid_r19").addClass("cgrey");
+	
+	
+	function SSI_CustomGraphicalRadiobox(GraphicalRadioboxObj, InputObj)
+{
+    var id=InputObj.id.split("_")[1].substr(1); 
+	//var idc=InputObj.id.split("_")[2].substr(1); 		
+	 for(i=0;i<[% ListLength(C12RowList) %];i++)
+		{
+			
+		    SSI_SetSelect("[% QuestionName() %]_r"+id+"_c1", false);
+			SSI_SetSelect("[% QuestionName() %]_r"+id+"_c2", false);
+			}
+		
+}
+function SSI_CustomGraphicalCheckbox(GraphicalCheckboxObj, InputObj, blnCheck)
+{
+ 	var id=InputObj.id.split("_")[1].substr(1); 
+	var idc=InputObj.id.split("_")[2].substr(1); 		
+	if(blnCheck==true )
+	{
+		
+		$("#[% QuestionName() %]_r"+id+"_c3_graphical").removeClass("radioboxselected");
+                 $("#[% QuestionName() %]_r"+id+"_c3_graphical").addClass("radiobox");
+					
+	
+	if (id == 8 && idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+   
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+   
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+   
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+
+} else if (id == 9&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+   // SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+   // SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+   // SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 10&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 11&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 12&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 13&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+    // SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 14&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 15&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 16&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r17_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r17_c2", false);
+} else if (id == 17&& idc == 1) {
+    SSI_SetSelect("[% QuestionName() %]_r8_c1", false);
+  //  SSI_SetSelect("[% QuestionName() %]_r8_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r9_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r9_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r10_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r10_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r11_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r11_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r12_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r12_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r13_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r13_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r14_c1", false);
+   //  SSI_SetSelect("[% QuestionName() %]_r14_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r15_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r15_c2", false);
+    SSI_SetSelect("[% QuestionName() %]_r16_c1", false);
+  //   SSI_SetSelect("[% QuestionName() %]_r16_c2", false);
+}
+
+  } 
+		
+}
+</script>
+
+<script type="text/javascript">
+/*Displaying the group headings based on randomizations*/
+var flow=true;
+var flow1=true,flow2=true,flow3=true,flow4=true,flow5=true;
+$(".inner_table > tbody:nth-child(1)>tr:gt(0)").each(function(){
+	a=$(this).attr("id");
+	rid=$(this).attr("id").split("_")[1].substr(1);
+	if((rid>=1 && rid<=5) && flow) 
+	{
+		$("#"+a).before("<tr><td colspan='5' bgcolor='#B0C4DE'><b>Lifestyle changes </b></td></tr>");
+		flow=false;
+	}
+	if( (rid>5 && rid<=7)&& flow1)
+	{
+		$("#"+a).before("<tr><td colspan='5' bgcolor='#B0C4DE'><b>Over-the-counter medicines / supplements </b></td></tr>");
+		flow1=false;
+	}
+	if( (rid>7 && rid<=16)&& flow2)
+	{
+		$("#"+a).before("<tr><td colspan='5' bgcolor='#B0C4DE'><b>Prescription medicines</b></td></tr>");
+		flow2=false;
+	}
+	if((rid>16 && rid<=17) && flow3)
+	{
+		$("#"+a).before("<tr><td colspan='5' bgcolor='#B0C4DE'><b>Other Medicines</b></td></tr>");
+		flow3=false;
+	}
+	if( (rid>17 && rid<=18)&& flow4)
+	{
+		$("#"+a).before("<tr><td colspan='5' bgcolor='#B0C4DE'><b>Surgery</b></td></tr>");
+		flow4=false;
+	}
+	if( (rid>18 && rid<=19)&& flow5)
+	{
+		$("#"+a).before("<tr><td colspan='5' bgcolor='#B0C4DE'><b>Other</b></td></tr>");
+		flow4=false;
+	}
+});
+
+/*Indent to the row labels*/
+$(".row_label_cell").children().css("margin-left","20px");
+//$(".grid_row11").css("background-color","lightpink");
+</script>
+
+```
+** End of pipein using map **
 
