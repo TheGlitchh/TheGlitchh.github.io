@@ -1,89 +1,145 @@
 "use strict";
 
 $(document).ready(function () {
-  var checkscroll = window.scrollY;
+  // First: Load and show quote, then run the rest after 10s
+  $.getJSON("quotes.json", function (quotes) {
+    var randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
-  if (checkscroll == 0) {//  $(".container").hide();
-  }
-
-  $("#sectionToNavigate").hide(); // $(".closeclass, .close-container, .close-btn").hide();
-
-  fetch('./blog.json').then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    var blogContainer = document.getElementById('blog-container');
-    data.forEach(function (post) {
-      var article = document.createElement('article');
-      article.classList.add('blog-post');
-      article.dataset.fullContent = encodeURIComponent(post.full); // Store full content
-
-      article.dataset.title = post.title; // Store title
-
-      article.dataset.date = post.date; // Store date
-
-      article.innerHTML = "\n               <header>\n                   <center><h2 class=\"post-title\">".concat(post.title, "</h2></center>\n                   <p class=\"post-meta\">Posted on ").concat(post.date, " by ").concat(post.author, "</p>\n               </header>\n               <div class=\"post-content\">\n                   <p style=\"color:#a89984\">").concat(post.content, "</p>\n               </div>\n               <footer>\n                   <p class=\"post-tags\">Tags: ").concat(post.tags.map(function (tag) {
-        return "<a href=\"#\" style=\"color:#666\">".concat(tag, "</a>");
-      }).join(', '), "</p>\n               </footer>\n           ");
-      blogContainer.appendChild(article);
-    });
-
-    function applyStaggeredAnimation() {
-      var titles = document.querySelectorAll('.post-title');
-      titles.forEach(function (title) {
-        var words = title.textContent.split(' ');
-        title.innerHTML = words.map(function (word, index) {
-          return "<span style=\"display:inline-block;\">".concat(word, "</span>");
-        }).join(' ');
-        var spans = title.querySelectorAll('span');
-        spans.forEach(function (span, i) {
-          span.style.animation = "revolveScale 0.4s forwards";
-          span.style.animationDelay = "".concat(i * 0.1, "s"); // Stagger the animation delay based on the word index
-        });
-      });
-    } // Call the function after adding all articles
-
-
-    applyStaggeredAnimation(); // Add event listener to handle clicks on any blog post
-
-    blogContainer.addEventListener('click', function (event) {
-      if (event.target.closest('.blog-post')) {
-        var post = event.target.closest('.blog-post');
-        var fullContent = decodeURIComponent(post.dataset.fullContent);
-        var title = post.dataset.title;
-        var date = post.dataset.date; // Show and populate the first .boxclassinfinite div with the full content
-
-        var boxclassinfinite = document.querySelector('.boxclassinfinite');
-
-        if (boxclassinfinite) {
-          boxclassinfinite.innerHTML = "\n                   <div class=\"close-container close-btn\">\n                   <div class=\"leftright\"></div>\n                   <div class=\"rightleft\"></div>\n                   <label class=\"close\">close</label>\n               </div>\n                       <header>\n                           <h1 style=\"text-align: center;\">".concat(title, "</h1>\n                           <p style=\"text-align: center; font-style: italic;\">Posted on ").concat(date, "</p>\n                       </header>\n                       <div class=\"full-content\">\n                           <p>").concat(fullContent, "</p>\n                       </div>\n                   ");
-          boxclassinfinite.removeAttribute('hidden');
-          boxclassinfinite.classList.remove('hide-animation'); // Optional: Close the .boxclassinfinite div when clicking outside of it
-
-          document.addEventListener('click', function (e) {
-            if (!boxclassinfinite.contains(e.target) && !e.target.closest('.blog-post')) {
-              boxclassinfinite.setAttribute('hidden', true);
-            }
-          });
-          document.addEventListener('click', function (event) {
-            var closeButton = event.target.closest('.close-container');
-            var boxclassinfinite = document.querySelector('.boxclassinfinite');
-
-            if (closeButton && boxclassinfinite) {
-              boxclassinfinite.classList.add('hide-animation');
-              boxclassinfinite.addEventListener('animationend', function () {
-                boxclassinfinite.setAttribute('hidden', true);
-              }, {
-                once: true
-              });
-            }
-          });
-        }
+    var $overlay = $('<div>', {
+      id: 'quoteOverlay',
+      css: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9999,
+        color: '#fff',
+        fontSize: '24px',
+        textAlign: 'center',
+        padding: '20px',
+        flexDirection: 'column',
+        backdropFilter: 'blur(5px)',
+        WebkitBackdropFilter: 'blur(5px)',
       }
     });
-  })["catch"](function (error) {
-    return console.error('Error loading blog posts:', error);
+
+    var $quoteText = $('<div>', {
+      text: '"' + randomQuote.text + '"',
+      css: {
+        maxWidth: '90%'
+      }
+    });
+
+    var $quoteId = $('<div>', {
+      text: 'Quote ID: ' + randomQuote.id,
+      css: {
+        fontSize: '14px',
+        marginTop: '10px',
+        opacity: 0.7
+      }
+    });
+
+    $overlay.append($quoteText).append($quoteId);
+    $('body').append($overlay);
+
+    // After 10 seconds, remove overlay and continue with rest of app logic
+    setTimeout(function () {
+      $overlay.fadeOut(500, function () {
+        $overlay.remove();
+
+        // 🔁 Now call the rest of your logic
+        initializeMainApp();
+      });
+    }, 10000);
   });
+
+  // All other logic goes here inside a function to be called after the quote
+  function initializeMainApp() {
+    // Your entire blog loading and UI setup code goes here
+    var checkscroll = window.scrollY;
+    if (checkscroll == 0) {
+      // $(".container").hide();
+    }
+
+    $("#sectionToNavigate").hide();
+
+    fetch('./blog.json').then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      var blogContainer = document.getElementById('blog-container');
+      data.forEach(function (post) {
+        var article = document.createElement('article');
+        article.classList.add('blog-post');
+        article.dataset.fullContent = encodeURIComponent(post.full);
+        article.dataset.title = post.title;
+        article.dataset.date = post.date;
+        article.innerHTML = "\n<header>\n<center><h2 class=\"post-title\">" + post.title + "</h2></center>\n<p class=\"post-meta\">Posted on " + post.date + " by " + post.author + "</p>\n</header>\n<div class=\"post-content\">\n<p style=\"color:#a89984\">" + post.content + "</p>\n</div>\n<footer>\n<p class=\"post-tags\">Tags: " + post.tags.map(function (tag) {
+          return "<a href=\"#\" style=\"color:#666\">" + tag + "</a>";
+        }).join(', ') + "</p>\n</footer>";
+        blogContainer.appendChild(article);
+      });
+
+      function applyStaggeredAnimation() {
+        var titles = document.querySelectorAll('.post-title');
+        titles.forEach(function (title) {
+          var words = title.textContent.split(' ');
+          title.innerHTML = words.map(function (word) {
+            return "<span style=\"display:inline-block;\">" + word + "</span>";
+          }).join(' ');
+          var spans = title.querySelectorAll('span');
+          spans.forEach(function (span, i) {
+            span.style.animation = "revolveScale 0.4s forwards";
+            span.style.animationDelay = (i * 0.1) + "s";
+          });
+        });
+      }
+
+      applyStaggeredAnimation();
+
+      blogContainer.addEventListener('click', function (event) {
+        if (event.target.closest('.blog-post')) {
+          var post = event.target.closest('.blog-post');
+          var fullContent = decodeURIComponent(post.dataset.fullContent);
+          var title = post.dataset.title;
+          var date = post.dataset.date;
+
+          var boxclassinfinite = document.querySelector('.boxclassinfinite');
+          if (boxclassinfinite) {
+            boxclassinfinite.innerHTML = "\n<div class=\"close-container close-btn\">\n<div class=\"leftright\"></div>\n<div class=\"rightleft\"></div>\n<label class=\"close\">close</label>\n</div>\n<header>\n<h1 style=\"text-align: center;\">" + title + "</h1>\n<p style=\"text-align: center; font-style: italic;\">Posted on " + date + "</p>\n</header>\n<div class=\"full-content\">\n<p>" + fullContent + "</p>\n</div>";
+            boxclassinfinite.removeAttribute('hidden');
+            boxclassinfinite.classList.remove('hide-animation');
+
+            document.addEventListener('click', function (e) {
+              if (!boxclassinfinite.contains(e.target) && !e.target.closest('.blog-post')) {
+                boxclassinfinite.setAttribute('hidden', true);
+              }
+            });
+
+            document.addEventListener('click', function (event) {
+              var closeButton = event.target.closest('.close-container');
+              var boxclassinfinite = document.querySelector('.boxclassinfinite');
+              if (closeButton && boxclassinfinite) {
+                boxclassinfinite.classList.add('hide-animation');
+                boxclassinfinite.addEventListener('animationend', function () {
+                  boxclassinfinite.setAttribute('hidden', true);
+                }, { once: true });
+              }
+            });
+          }
+        }
+      });
+
+    }).catch(function (error) {
+      console.error('Error loading blog posts:', error);
+    });
+  }
 });
+
 
 (function () {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
