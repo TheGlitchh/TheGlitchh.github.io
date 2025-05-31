@@ -1,4 +1,19 @@
 $(document).ready(function() {
+    var birthDateParts = "15/12/2000".split("/");
+    var birthDate = new Date(birthDateParts[2], birthDateParts[1] - 1, birthDateParts[0]); // year, month, day
+
+    var today = new Date();
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+
+    // Adjust age if birthday hasn't occurred yet this year
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    // Set the age to the element
+    $("#ageset").text(age);
+
     var checkscroll = window.scrollY;
     if(checkscroll == 0){
       //  $(".container").hide();
