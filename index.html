@@ -14,7 +14,7 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<meta property="og:title" content="Sourav Gope">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://TheExacc.github.io">
+  <meta property="og:url" content="https://TheGlitchh.github.io">
   <meta name="referrer" content="origin">
   <meta name="robots" content="index, follow">
 	<meta name="audience" content="All" />
@@ -88,26 +88,34 @@
   transition: opacity 0.5s ease, visibility 0.5s ease;
   opacity: 1; 
 }
-
-.chevron {
+/* Original Chevron Styles */
+.chevron{
   position: absolute;
   width: 28px;
   height: 8px;
   opacity: 0;
   transform: scale3d(0.5, 0.5, 0.5);
-  animation: move 3s ease-out infinite;
+}
+.reverse-chevron-child {
+  position: absolute;
+  width: 28px;
+  height: 8px;
+  opacity: 0;
+  transform: scale3d(-0.5, -0.5, -0.5);
 }
 
-.chevron:first-child {
+.chevron:first-child, .first {
   animation: move 3s ease-out 1s infinite;
 }
 
-.chevron:nth-child(2) {
+.chevron:nth-child(2), .second {
   animation: move 3s ease-out 2s infinite;
 }
 
-.chevron:before,
-.chevron:after {
+.chevron:before, 
+.chevron:after,
+.reverse-chevron-child:before,
+.reverse-chevron-child:after {
   content: ' ';
   position: absolute;
   top: 0;
@@ -116,34 +124,47 @@
   background: #ebdbb2;
 }
 
-.chevron:before {
+.chevron:before,
+.reverse-chevron-child:before {
   left: 0;
   transform: skew(0deg, 30deg);
 }
 
-.chevron:after {
+.chevron:after,
+.reverse-chevron-child:after {
   right: 0;
   width: 50%;
   transform: skew(0deg, -30deg);
 }
 
-@keyframes move {
-  25% {
-    opacity: 1;
+/* Reverse Chevron Container */
+.reverse-chevron {
+  position: absolute;
+  top: 20%;
+  right: 50%;
+  width: 28px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 1000;
+}
 
-  }
-  33% {
-    opacity: 1;
-    transform: translateY(30px);
-  }
-  67% {
-    opacity: 1;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
-  }
+/* Animation Differences */
+@keyframes move {
+  25% { opacity: 1; }
+  33% { opacity: 1; transform: translateY(30px); }
+  67% { opacity: 1; transform: translateY(40px); }
+  100% { opacity: 0; transform: translateY(55px) scale3d(0.5, 0.5, 0.5); }
+}
+
+.reverse-chevron-child {
+  animation-name: move-reverse;
+}
+
+@keyframes move-reverse {
+  25% { opacity: 1; }
+  33% { opacity: 1; transform: translateY(-30px) scale3d(-1, -1, -1); }
+  67% { opacity: 1; transform: translateY(-40px) scale3d(-1, -1, -1); }
+  100% { opacity: 0; transform: translateY(-55px) scale3d(-0.5, -0.5, -0.5); }
 }
 
 .text {
@@ -363,7 +384,7 @@
   
 <div class="boxclass">
 <table width="100%" border="0">
-<tr> <td style="padding-left:-20px;" rowspan="4"><a href="https://github.com/TheExacc"><img style="" class="imgclass1" src="./res/PXL_20230729_140247553.jpg" alt="souravImg"> </a>  </td>
+<tr> <td style="padding-left:-20px;" rowspan="4"><a href="https://github.com/TheGlitchh"><img style="" class="imgclass1" src="./res/PXL_20230729_140247553.jpg" alt="souravImg"> </a>  </td>
 <td><p class="p1 gradient" style="font-weight: bold; font-size: 20px;">Sourav Gope</p></td>
 <td rowspan="4" valign="top" class="download-cv-container">
   <button id="downloadCV" class="download-cv-btn"><i class="fas fa-id-card"></i></button>
@@ -371,7 +392,7 @@
 </tr>
 <tr><td><p><i class="fa-solid fa-calendar-days"></i> Age: 23</p></td></tr>
 	<tr><td><p>Education: Btech@CSE</p></td></tr>
-	<tr><td><p>Email: TheExacc@duck.com</p></td></tr>
+	<tr><td><p>Email: TheGlitchh@duck.com</p></td></tr>
 </table>
 </p>
 	<table>
@@ -383,16 +404,16 @@ working as a Programmer Analyst at <a href="https://SRINSIGHTS.com"> Strategic R
 	<br>
 	<table> <tr> <td><ul style="margin-left:90px; margin-top:-15px;">
 		<li>
-			<a target="_blank" href="https://t.me/TheExacc">
+			<a target="_blank" href="https://t.me/TheGlitchh1">
 				<i class="fas fa-paper-plane icon1"></i>   </a>
 		</li>
 		<li>
-			<a target="_blank" href="https://github.com/TheExacc"><i class="fab fa-github icon1"></i></a>
+			<a target="_blank" href="https://github.com/TheGlitchh"><i class="fab fa-github icon1"></i></a>
 		</li>
 		<li>
-			<a target="_blank" href="https://leetcode.com/TheExacc"><i class="fas fa-code-branch icon1"></i></a></li>
+			<a target="_blank" href="https://leetcode.com/TheGlitchh"><i class="fas fa-code-branch icon1"></i></a></li>
 		<li>
-			<a href="mailto:TheExacc@duck.com"><i class="fas fa-envelope icon1"></i></a></li>
+			<a href="mailto:TheGlitchh@duck.com"><i class="fas fa-envelope icon1"></i></a></li>
 	</ul></td></tr></table>
 
 </div>

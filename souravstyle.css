@@ -128,7 +128,7 @@ ul li:nth-child(4) a:before {
   }
   .boxclass3 {
     position: absolute;
-    margin-top: 150px;
+    margin-top: 10px;
     height: 150px;
     margin-left: -340pt;
     background: var(--background);

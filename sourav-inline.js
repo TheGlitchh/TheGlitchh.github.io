@@ -324,17 +324,76 @@ document.getElementById('downloadCV').addEventListener('click', function() {
 
 document.querySelectorAll('.chevron').forEach(function(chevron) {
     chevron.addEventListener('click', function() {
+        $(".chevron").hide();
       $("#sectionToNavigate").show(); 
       var target = this.getAttribute('data-scroll-to');
       var targetElement = document.querySelector(target);
       if (targetElement) {
-              const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 450; // 10px above
-  
-              window.scrollTo({
-                  top: targetPosition,
-                  behavior: 'smooth' // For smooth scrolling
-              });
-          }
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 490;
+    
+        const scrollPromise = new Promise(resolve => {
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Similar scroll end detection as above
+            let scrollTimeout;
+            const checkScrollEnd = () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    window.removeEventListener('scroll', checkScrollEnd);
+                    resolve();
+                }, 100);
+            };
+            
+            window.addEventListener('scroll', checkScrollEnd);
+        });
+    
+        scrollPromise.then(() => {
+            document.body.style.overflow = 'hidden';
+            document.querySelector('.boxclass3').style.overflowY = 'auto';
+            
+        });
+    }
+    if (!document.querySelector('.reverse-chevron')) {
+        const reverseChevron = document.createElement('div');
+        reverseChevron.className = 'reverse-chevron';
+        
+        // Create the same structure as original chevron (no innerHTML needed)
+        const chevron1 = document.createElement('div');
+        const chevron2 = document.createElement('div');
+        chevron1.className = 'reverse-chevron-child first';
+        chevron2.className = 'reverse-chevron-child second';
+        
+        reverseChevron.appendChild(chevron1);
+        reverseChevron.appendChild(chevron2);
+        
+        // Position styling (CSS class handles the rest)
+        reverseChevron.style.position = 'absolute';
+        reverseChevron.style.bottom = '20px';
+        reverseChevron.style.right = '50%';
+        reverseChevron.style.cursor = 'pointer';
+        reverseChevron.style.zIndex = '1000';
+        
+        reverseChevron.addEventListener('click', function() {
+            $(".chevron").show();
+            document.body.style.overflow = 'auto';
+            $("#boxcontainer").fadeIn(500); 
+       $("#sectionToNavigate").fadeOut(50);
+       $("#sectionToNavigate").hide();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            $("#sectionToNavigate").fadeOut(500);
+            $("#boxcontainer").fadeIn(500);
+            reverseChevron.remove();
+        });
+        
+        document.body.appendChild(reverseChevron);
+    }
+    
     });
     applyStaggeredAnimationProjects();
   });
@@ -353,32 +412,18 @@ window.addEventListener('scroll', function() {
    const currentScrollY = window.scrollY;
    
 
-   // Check if the user is scrolling up
-   if (currentScrollY < lastScrollY) {
-       // Scroll up detected
-       $("#boxcontainer").fadeIn(500); 
-       $("#sectionToNavigate").fadeOut(50);
-       $("#sectionToNavigate").hide(); 
-      // $(".container").hide();
-       window.scrollTo({
-           top: 0,
-           behavior: 'smooth' // For smooth scrolling to the top
-       });
-       hasClickedChevron = false; // Reset the flag
-   } else if (currentScrollY > 10) {
+ if (currentScrollY > 10) {
        // Check if the scroll position is greater than 10px
-       if (!hasClickedChevron) {
-           document.querySelector(".chevron").click();
+   
+          // document.querySelector(".chevron").click();
            $("#sectionToNavigate").fadeIn(500); 
            $("#boxcontainer").fadeOut(50);
            $("#boxcontainer").hide(); 
            hasClickedChevron = true; // Set the flag to true after clicking
-         
-       }
+           
      
-   } else {
-       hasClickedChevron = false; // Reset the flag
    }
+
 
    // Update the last scroll position
    lastScrollY = currentScrollY;
