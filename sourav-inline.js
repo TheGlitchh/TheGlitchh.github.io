@@ -1,3 +1,4 @@
+$('.boxclass3').hide();
 $(document).ready(function() {
     var birthDateParts = "15/12/2000".split("/");
     var birthDate = new Date(birthDateParts[2], birthDateParts[1] - 1, birthDateParts[0]); // year, month, day
@@ -339,6 +340,7 @@ document.getElementById('downloadCV').addEventListener('click', function() {
 
 document.querySelectorAll('.chevron').forEach(function(chevron) {
     chevron.addEventListener('click', function() {
+        $('.boxclass3').show();
         $(".chevron").hide();
       $("#sectionToNavigate").show(); 
       var target = this.getAttribute('data-scroll-to');
